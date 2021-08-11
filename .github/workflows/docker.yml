@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Build Docker image
+        run: docker build . --tag ghcr.io/eol-uchile/maintenance-nginx:${GITHUB_SHA}
+        
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: eolito
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Push
+        run: |
+          docker push ghcr.io/eol-uchile/maintenance-nginx:${GITHUB_SHA}
