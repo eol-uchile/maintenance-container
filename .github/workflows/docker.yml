@@ -9,9 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Build Docker image
-        run: docker build . --tag ghcr.io/eol-uchile/maintenance-nginx:${GITHUB_SHA}
-
       - name: Build Eol
         run: docker build ./eol --file ./eol/Dockerfile --tag eoluchile/eol-edx:${GITHUB_SHA} --tag eoluchile/eol-edx:latest
       
@@ -27,6 +24,5 @@ jobs:
 
       - name: Push
         run: |
-          docker push ghcr.io/eol-uchile/maintenance-nginx:${GITHUB_SHA}
           docker push ghcr.io/eol-uchile/maintenance-eol:${GITHUB_SHA}
           docker push ghcr.io/eol-uchile/maintenance-uabierta:${GITHUB_SHA}
