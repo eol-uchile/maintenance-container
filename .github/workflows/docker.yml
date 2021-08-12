@@ -28,3 +28,5 @@ jobs:
       - name: Push
         run: |
           docker push ghcr.io/eol-uchile/maintenance-nginx:${GITHUB_SHA}
+          docker push ghcr.io/eol-uchile/eol-edx:${GITHUB_SHA}
+          docker push ghcr.io/eol-uchile/edx-uabierta:${GITHUB_SHA}
