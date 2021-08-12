@@ -13,10 +13,10 @@ jobs:
         run: docker build . --tag ghcr.io/eol-uchile/maintenance-nginx:${GITHUB_SHA}
 
       - name: Build Eol
-        run: docker build . --target base --file ./eol/Dockerfile --tag eoluchile/eol-edx:${GITHUB_SHA} --tag eoluchile/eol-edx:latest
+        run: docker build ./eol --file ./eol/Dockerfile --tag eoluchile/eol-edx:${GITHUB_SHA} --tag eoluchile/eol-edx:latest
       
       - name: Build UAbierta
-        run: docker build . --target base --file ./uabierta/Dockerfile --tag eoluchile/edx-uabierta:${GITHUB_SHA} --tag eoluchile/edx-uabierta:latest
+        run: docker build ./uabierta --file ./uabierta/Dockerfile --tag eoluchile/edx-uabierta:${GITHUB_SHA} --tag eoluchile/edx-uabierta:latest
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
