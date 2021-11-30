@@ -16,7 +16,7 @@ jobs:
         run: docker build ./uabierta --file ./uabierta/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:uabierta-${GITHUB_SHA}
 
       - name: Build Virtual labx CLA
-        run: docker build ./virtuallbax --file ./virtuallbax/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:virtuallabx-${GITHUB_SHA}
+        run: docker build ./virtuallabx --file ./virtuallabx/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:virtuallabx-${GITHUB_SHA}
 
       - name: Build Open UChile
         run: docker build ./openuchile --file ./openuchile/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:openuchile-${GITHUB_SHA}
