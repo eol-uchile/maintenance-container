@@ -39,7 +39,7 @@
     <div class="eol-title">
       <h1>Plataforma en mantención</h1>
       <br>
-      <p>Hora estimada de regreso 10:30 (Santiago/Chile)</p>
+      <p id="message">Hora estimada de regreso ... (Santiago/Chile)</p>
       <br>
       <p>Para solicitar ayuda comuníquese con eol-ayuda@uchile.cl</p>
     </div>
@@ -48,4 +48,18 @@
     </div>
   </div>
 </body>
+<script>
+  var messageDiv = document.getElementById("message");
+  fetch("/config/message.json").then(function(res){
+    if(res.status === 200 || res.status === 302 || res.status === 301){
+      return res.json().then(function(response){
+        messageDiv.innerHTML = response.message;
+      })
+    }else{
+      throw Error;
+    }
+  }).catch(function(error){
+    console.error(error)
+  })
+</script>
 </html>
