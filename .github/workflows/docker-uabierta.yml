@@ -12,11 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set current date as env variable
+        run: echo "TS=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
       - name: Build UAbierta
-        run: docker build ./uabierta --file ./uabierta/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:uabierta-$(date +'%Y%m%d%H%M%S')
+        run: docker build ./uabierta --file ./uabierta/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:uabierta-${{ env.TS }}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: eolito
@@ -25,4 +28,4 @@ jobs:
       - name: Push
         if: github.ref == 'refs/heads/main'
         run: |
-          docker push ghcr.io/eol-uchile/maintenance-container:uabierta-${GITHUB_SHA}
+          docker push ghcr.io/eol-uchile/maintenance-container:uabierta-${{ env.TS }}
