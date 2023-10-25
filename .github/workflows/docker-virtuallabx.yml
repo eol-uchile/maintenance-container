@@ -3,7 +3,7 @@ name: Docker VirtualLabx Image CI
 on:
   push:
     paths:
-      - 'virtuallabx/'
+      - 'virtuallabx/**'
 
 jobs:
   build:

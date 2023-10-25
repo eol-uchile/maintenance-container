@@ -3,7 +3,7 @@ name: Docker OpenUchile Image CI
 on:
   push:
     paths:
-      - 'openuchile/'
+      - 'openuchile/**'
 
 jobs:
   build:

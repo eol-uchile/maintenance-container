@@ -3,7 +3,7 @@ name: Docker EOL Image CI
 on:
   push:
     paths:
-      - 'eol/'
+      - 'eol/**'
 
 jobs:
   build:

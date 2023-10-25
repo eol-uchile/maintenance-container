@@ -3,7 +3,7 @@ name: Docker UAbierta Image CI
 on:
   push:
     paths:
-      - 'uabierta/'
+      - 'uabierta/**'
 
 jobs:
   build:
