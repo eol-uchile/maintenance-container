@@ -1,0 +1,27 @@
+name: Docker UAbierta Image CI
+
+on:
+  push:
+    paths:
+      - 'uabierta/'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build UAbierta
+        run: docker build ./uabierta --file ./uabierta/Dockerfile --tag ghcr.io/eol-uchile/maintenance-container:uabierta-${GITHUB_SHA}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: eolito
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Push
+        run: |
+          docker push ghcr.io/eol-uchile/maintenance-container:uabierta-${GITHUB_SHA}
