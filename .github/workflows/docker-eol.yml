@@ -23,5 +23,6 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Push
+        if: github.ref == 'refs/heads/main'
         run: |
           docker push ghcr.io/eol-uchile/maintenance-container:eol-${GITHUB_SHA}
